@@ -1,16 +1,18 @@
-## Hi there 👋
+# Hi there 👋 I'm Sphesihle
 
-<!--
-**MaKhumalo2/MaKhumalo2** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+🚀 I’m a self-taught web developer learning HTML, CSS, JS, Python & MySQL.  
+💡 Interested in tech, urban development, and building cool projects.  
 
-Here are some ideas to get you started:
+## 🔧 Technologies
+- Frontend: HTML, CSS, JavaScript
+- Backend: Python, MySQL
+- Tools: Git, GitHub
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 📌 Featured Projects
+- [Project One](https://github.com/MaKhumalo2/Basic-Calculator-Program)
+- [Project Two](https://github.com/MaKhumalo2/Python-Project-Finale)
+
+## 📊 GitHub Stats
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=yourusername&show_icons=true&theme=tokyonight)
+
+
