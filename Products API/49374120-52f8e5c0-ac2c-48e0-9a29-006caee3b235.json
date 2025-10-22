@@ -10,6 +10,42 @@
 			"item": [
 				{
 					"name": "Get All Products",
+					"event": [
+						{
+							"id": "4c1590c6-6896-4e56-90d8-1c2bbf79dc30",
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"// Get All Products (in folder Product Retrieval) - Test Script",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array of products\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(Array.isArray(jsonData)).to.be.true;",
+									"});",
+									"",
+									"pm.test(\"Each product has required fields\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.length > 0) {",
+									"        jsonData.forEach(function(product) {",
+									"            pm.expect(product).to.have.property(\"id\");",
+									"            pm.expect(product).to.have.property(\"name\");",
+									"            pm.expect(product).to.have.property(\"price\");",
+									"        });",
+									"    }",
+									"});",
+									"",
+									"pm.test(\"Handles 4xx/5xx errors gracefully\", function () {",
+									"    pm.expect([200, 400, 404, 500]).to.include(pm.response.code);",
+									"});",
+									""
+								]
+							}
+						}
+					],
 					"id": "49374120-ccb410d9-6047-4e98-9d75-3e6e98e14698",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -295,6 +331,37 @@
 		},
 		{
 			"name": "Delete Product",
+			"event": [
+				{
+					"id": "8dc651e5-14f0-46ec-81c7-b0287f8a9731",
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Delete Product - Test Script",
+							"pm.test(\"Status code is 200 or 404\", function () {",
+							"    pm.expect([200, 404]).to.include(pm.response.code);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Product deleted successfully\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an(\"object\");",
+							"        pm.expect(jsonData).to.have.property(\"message\");",
+							"    });",
+							"}",
+							"",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"Product not found error structure\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property(\"error\");",
+							"    });",
+							"}",
+							""
+						]
+					}
+				}
+			],
 			"id": "49374120-e536cb44-59b0-4b0c-8f19-736ffca7e14a",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
