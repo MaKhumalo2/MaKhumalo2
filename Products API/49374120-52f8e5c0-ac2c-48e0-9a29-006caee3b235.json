@@ -149,6 +149,39 @@
 		},
 		{
 			"name": "Create Product",
+			"event": [
+				{
+					"id": "010f3d57-38cd-4051-8045-3f1ea3cdb738",
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Create Product - Test Script",
+							"pm.test(\"Status code is 201 or 400\", function () {",
+							"    pm.expect([201, 400]).to.include(pm.response.code);",
+							"});",
+							"",
+							"if (pm.response.code === 201) {",
+							"    pm.test(\"Product created successfully\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an(\"object\");",
+							"        pm.expect(jsonData).to.have.property(\"id\");",
+							"        pm.expect(jsonData).to.have.property(\"name\");",
+							"        pm.expect(jsonData).to.have.property(\"price\");",
+							"    });",
+							"}",
+							"",
+							"if (pm.response.code === 400) {",
+							"    pm.test(\"Validation error structure\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property(\"error\");",
+							"    });",
+							"}",
+							""
+						]
+					}
+				}
+			],
 			"id": "49374120-80f44bcd-34d3-4783-a765-15230a0d9807",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -185,6 +218,46 @@
 		},
 		{
 			"name": "Update Product",
+			"event": [
+				{
+					"id": "c08e490d-b18b-4b6a-8953-6387eb736417",
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Update Product - Test Script",
+							"pm.test(\"Status code is 200, 400, or 404\", function () {",
+							"    pm.expect([200, 400, 404]).to.include(pm.response.code);",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    pm.test(\"Product updated successfully\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.be.an(\"object\");",
+							"        pm.expect(jsonData).to.have.property(\"id\");",
+							"        pm.expect(jsonData).to.have.property(\"name\");",
+							"        pm.expect(jsonData).to.have.property(\"price\");",
+							"    });",
+							"}",
+							"",
+							"if (pm.response.code === 400) {",
+							"    pm.test(\"Validation error structure\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property(\"error\");",
+							"    });",
+							"}",
+							"",
+							"if (pm.response.code === 404) {",
+							"    pm.test(\"Product not found error structure\", function () {",
+							"        var jsonData = pm.response.json();",
+							"        pm.expect(jsonData).to.have.property(\"error\");",
+							"    });",
+							"}",
+							""
+						]
+					}
+				}
+			],
 			"id": "49374120-5e577019-c3de-4aed-8609-c6e7738aec7b",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
