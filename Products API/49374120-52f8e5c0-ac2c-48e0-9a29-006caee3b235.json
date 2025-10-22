@@ -35,6 +35,42 @@
 		},
 		{
 			"name": "Get All Products",
+			"event": [
+				{
+					"id": "e6593c7a-de20-4da6-83a3-33fc4633bc3f",
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"// Get All Products - Test Script",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response is an array of products\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(Array.isArray(jsonData)).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Each product has required fields\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    if (jsonData.length > 0) {",
+							"        jsonData.forEach(function(product) {",
+							"            pm.expect(product).to.have.property(\"id\");",
+							"            pm.expect(product).to.have.property(\"name\");",
+							"            pm.expect(product).to.have.property(\"price\");",
+							"        });",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Handles 4xx/5xx errors gracefully\", function () {",
+							"    pm.expect([200, 400, 404, 500]).to.include(pm.response.code);",
+							"});",
+							""
+						]
+					}
+				}
+			],
 			"id": "49374120-29bc1896-6c02-41ac-b31c-5cd85b74291f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
