@@ -134,7 +134,7 @@
 					"id": "a527cd13-8259-4d08-8431-37d2f184cefc",
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
+						"id": "18b10a02-2739-4891-b3c7-1e0bb20f76fd",
 						"exec": [
 							"// Get Product by ID - Test Script",
 							"pm.test(\"Status code is 200 or 404\", function () {",
@@ -158,7 +158,10 @@
 							"    });",
 							"}",
 							""
-						]
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
 					}
 				}
 			],
@@ -168,7 +171,12 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api_key}}"
+					}
+				],
 				"url": {
 					"raw": "{{base_url}}/api/products/1",
 					"host": [
