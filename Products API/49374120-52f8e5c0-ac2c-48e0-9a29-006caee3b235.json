@@ -198,7 +198,7 @@
 					"id": "010f3d57-38cd-4051-8045-3f1ea3cdb738",
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
+						"id": "193231ed-af70-4bac-a8e4-bcebfca8a247",
 						"exec": [
 							"// Create Product - Test Script",
 							"pm.test(\"Status code is 201 or 400\", function () {",
@@ -222,7 +222,10 @@
 							"    });",
 							"}",
 							""
-						]
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
 					}
 				}
 			],
@@ -233,6 +236,10 @@
 			"request": {
 				"method": "POST",
 				"header": [
+					{
+						"key": "x-api-key",
+						"value": "{{api_key}}"
+					},
 					{
 						"key": "Content-Type",
 						"value": "application/json"
